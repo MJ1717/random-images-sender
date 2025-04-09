@@ -60,14 +60,34 @@
       //get the value of email and subject
       const email = document.getElementById('emailInput').value;
       const subject = document.getElementById('subjectInput').value;
+      const imageUrl = document.getElementById('randomImage').src;
 
-      //printing those on the website
-      console.log("Send image to:", email);
-      console.log("With subject:", subject);
-      console.log("Image URL:", document.getElementById('randomImage').src);
+      //data store
+      const data = {
+        email: email,
+        subject: subject,
+        imageUrl: imageUrl
+      };
 
-      //alert shows the popup box 
-      alert("Pretending to send the image!\n(To: " + email + ")\n(Subject: " + subject + ")");
+
+      //sending a request to that server
+      fetch("http://127.0.0.1:5000/send", {
+        //post mean, u r sending a data
+        method: "POST",
+        //header is one of keys in fetch
+        //content type is reserv word, tell server what format does request body use
+        //application/json is like {a:123, b:123, c:123}
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        //body is the acutal data u r sending
+        //data is javascipr object and u cant diretly send,
+        //so u r going to change the data into a string
+        body: JSON.stringify(data)
+      });
+
+      alert("Sent to server!");
     }
 
 
