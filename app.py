@@ -7,7 +7,7 @@ CORS(app)
 
 
 
-
+#when someone ask for request to/send using post method, run the function below
 @app.route("/send", methods=["POST"])
 def send():
     data = request.json  
