@@ -38,6 +38,15 @@
   </button>
 
 
+  <!-- type is email its already like a class, 
+   and id is the variable name, and input values are contained in 'value' -->
+  <input type="email" id="emailInput" placeholder="Enter email address">
+
+  <input type="text" id="subjectInput" placeholder="Enter subject line">
+
+  <button onclick="sendImage()">Send</button>
+
+
   <!-- javascript -->
   <script>
     function loadNewImage() {
@@ -46,6 +55,22 @@
       //when u read picsum website, it says we can add ?random at the end so we use that
       document.getElementById('randomImage').src = "https://picsum.photos/600/400?random=" + new Date().getTime();
     }
+
+    function sendImage() {
+      //get the value of email and subject
+      const email = document.getElementById('emailInput').value;
+      const subject = document.getElementById('subjectInput').value;
+
+      //printing those on the website
+      console.log("Send image to:", email);
+      console.log("With subject:", subject);
+      console.log("Image URL:", document.getElementById('randomImage').src);
+
+      //alert shows the popup box 
+      alert("Pretending to send the image!\n(To: " + email + ")\n(Subject: " + subject + ")");
+    }
+
+
   </script>
 </body>
 </html>
