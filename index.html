@@ -1,11 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- support many other lagnuages -->
   <meta charset="UTF-8">
   <title>Random Image Sender</title>
   <style>
-    body { text-align: center; font-family: sans-serif; padding: 40px; }
-    img { max-width: 80%; height: auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-    button { margin-top: 20px; padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    body { 
+      text-align: center; 
+      font-family: sans-serif; 
+      padding: 40px; 
+    }
+
+    img { 
+      max-width: 80%; 
+      height: auto; 
+      border-radius: 8px; 
+    }
+
+    button { 
+      margin-top: 20px; 
+      padding: 10px 20px; 
+      font-size: 16px; 
+      cursor: pointer; }
   </style>
 </head>
+
+<body>
+  <h1>Random Image</h1>
+
+  <!-- id is variable name, src contains url of image -->
+  <img id="randomImage" src="https://picsum.photos/600/400">
+  
+
+  <!-- when this button is clicked, call loadnewimage function -->
+  <button onclick="loadNewImage()">
+    Next
+  </button>
+
+
+  <!-- javascript -->
+  <script>
+    function loadNewImage() {
+
+      //find the 'randomimage' variable
+      //when u read picsum website, it says we can add ?random at the end so we use that
+      document.getElementById('randomImage').src = "https://picsum.photos/600/400?random=" + new Date().getTime();
+    }
+  </script>
+</body>
+</html>
