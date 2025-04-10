@@ -17,8 +17,10 @@ SENDER_EMAIL = "bananahamo77@gmail.com"
 image_test = None
 
 
-
+@app.route('/')
 def home():
+    global image_test
+
     if image_test:
         return f"<h2>Last image sent:</h2> <img src='{image_test}' style='max-width:600px;'>"
     else:

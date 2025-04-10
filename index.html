@@ -51,9 +51,13 @@
   <script>
     function loadNewImage() {
 
+      //seed should be unique so current time
+      const seed = Date.now()
+
       //find the 'randomimage' variable
       //when u read picsum website, it says we can add ?random at the end so we use that
-      document.getElementById('randomImage').src = "https://picsum.photos/600/400?random=" + new Date().getTime();
+      //now changed it to seed cuz website create diff random time pic for each person
+      document.getElementById('randomImage').src = "https://picsum.photos/seed/" + seed + "/600/400"
     }
 
     function sendImage() {
