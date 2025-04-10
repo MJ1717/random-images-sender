@@ -1,19 +1,91 @@
 from flask import Flask, request
 from flask_cors import CORS
+import requests #for downlaoding data image
+import smtplib #for sending email
+
 
 
 app = Flask(__name__)
 CORS(app)
 
 
+BREVO_API_KEY = "123"
+
+
+SENDER_EMAIL = "bananahamo77@gmail.com"
+
+image_test = None
+
+
+
+def home():
+    if image_test:
+        return f"<h2>Last image sent:</h2> <img src='{image_test}' style='max-width:600px;'>"
+    else:
+        return "<p>No image sent yet.</p>"
+
 
 #when someone ask for request to/send using post method, run the function below
 @app.route("/send", methods=["POST"])
-def send():
-    data = request.json  
-    print("Received data:", data)
+def send(): 
+    global image_test
 
-    return "OK", 200
+
+    data = request.json  
+    email_to = data["email"]
+    subject = data["subject"]
+    image_url = data["imageUrl"]
+
+    image_test = image_test
+
+    #brevo expected format
+    email_data = {
+        #sender should be like dict
+        "sender": {
+            "name": "Random image for you!",
+            "email": SENDER_EMAIL
+        },
+
+        #to should be array
+        "to": [
+            {
+                "email": email_to
+            }
+        ],
+
+        #subject is string
+        "subject": subject,
+
+        #can be a string, but since we are passing image_url variable, need to put f infront
+        "htmlContent": f"""
+            <html>
+                <body>
+                    <h1>HAHAHAHAHAHA</h1>
+                    <img src="{image_url}" style="max-width:600px;">
+                </body>
+            </html>
+        """
+    }
+
+    #u post request to api, asking if you can send a data,.
+    response = requests.post(
+        "https://api.brevo.com/v3/smtp/email",
+        #include api key, and telling the content type, and accept type
+        headers={
+            "api-key": BREVO_API_KEY,
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        #you are sending email_data in json, if u do json=smt, its gonna change it into json format
+        json=email_data
+    )
+
+
+    print("Email sent response:", response.status_code, response.text)
+
+    return "Email sent!", 200
+
+
 
 
 
