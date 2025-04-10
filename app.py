@@ -2,6 +2,8 @@ from flask import Flask, request
 from flask_cors import CORS
 import requests #for downlaoding data image
 import smtplib #for sending email
+import os #for env key
+from dotenv import load_dotenv
 
 
 
@@ -9,10 +11,10 @@ app = Flask(__name__)
 CORS(app)
 
 
-BREVO_API_KEY = "123"
+load_dotenv() #get all the data in .env
 
-
-SENDER_EMAIL = "bananahamo77@gmail.com"
+BREVO_API_KEY = os.getenv("BREVO_API_KEY")
+SENDER_EMAIL = os.getenv("SENDER_EMAIL")
 
 image_test = None
 
