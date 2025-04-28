@@ -28,23 +28,30 @@
 <body>
   <h1>Random Image</h1>
 
-  <!-- id is variable name, src contains url of image -->
-  <img id="randomImage" src="https://picsum.photos/600/400">
+  <div>
+      <!-- id is variable name, src contains url of image -->
+    <img id="randomImage" src="https://picsum.photos/600/400">
+    
+
+    <!-- when this button is clicked, call loadnewimage function -->
+    <button onclick="loadNewImage()">
+      Next
+    </button>
+  </div>
   
 
-  <!-- when this button is clicked, call loadnewimage function -->
-  <button onclick="loadNewImage()">
-    Next
-  </button>
+  <div>
+    <!-- type is email its already like a class, 
+    and id is the variable name, and input values are contained in 'value' -->
+    <input type="email" id="emailInput" placeholder="Enter email address">
+
+    <input type="text" id="subjectInput" placeholder="Enter subject line">
+
+    <button onclick="sendImage()">Send</button>
 
 
-  <!-- type is email its already like a class, 
-   and id is the variable name, and input values are contained in 'value' -->
-  <input type="email" id="emailInput" placeholder="Enter email address">
-
-  <input type="text" id="subjectInput" placeholder="Enter subject line">
-
-  <button onclick="sendImage()">Send</button>
+  </div>
+  
 
 
   <!-- javascript -->
